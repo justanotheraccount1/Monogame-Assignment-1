@@ -47,7 +47,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/boom.png
 
-#begin Images/fighterJet.png
+#begin Images/fighterJetImage.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -57,7 +57,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/fighterJet.png
+/build:Images/fighterJetImage.png
 
 #begin Images/skyline.png
 /importer:TextureImporter
