@@ -10,11 +10,11 @@ namespace Monogame_Assignment_1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        Rectangle window, bgRect, tRexRect, jetRect, fireRect, boomRect;
+        Rectangle window, bgRect, tRexRect, jetRect, fireRect, boomRect, boomRect2;
         Texture2D bgTexture, tRexTexture, jetTexture, fireTexture, boomTexture;
         SpriteFont titleFont;
         Random generator;
-        float titleSpin, titleFade, fireFade, numFire, fadeAmount;
+        float titleFade, numFire, fadeAmount, boomFade, boomFade2;
 
         Vector2 jetSpeed;
         List<Rectangle> fireRects;
@@ -35,8 +35,11 @@ namespace Monogame_Assignment_1
             bgRect = window;
             jetRect = new Rectangle(400, 40, 100, 40);
             tRexRect = new Rectangle(200, 220, 300, 210);
-            titleSpin = 1f;
+            boomRect = new Rectangle(generator.Next(300), generator.Next(750), 50, 50);
+            boomRect2 = new Rectangle(generator.Next(300), generator.Next(750), 50, 50);
             titleFade = 1f;
+            boomFade = 1f;
+            boomFade2 = 0.5f;
             fadeAmount = 0.02f;
             jetSpeed = new Vector2(2, 0);
             numFire = generator.Next(10);
@@ -89,7 +92,28 @@ namespace Monogame_Assignment_1
                 fadeAmount *= (-1);
             }
             titleFade += fadeAmount;
-
+            boomFade -= 0.005f;
+            boomFade2 -= 0.005f;
+            if (boomFade <= 0)
+            {
+                boomFade = 0f;
+            }
+            if (boomFade == 0f)
+            {
+                boomRect.X = generator.Next(750);
+                boomRect.Y = generator.Next(300);
+                boomFade = 1f;
+            }
+            if (boomFade2 <= 0)
+            {
+                boomFade2 = 0f;
+            }
+            if (boomFade2 == 0f)
+            {
+                boomRect2.X = generator.Next(750);
+                boomRect2.Y = generator.Next(300);
+                boomFade2 = 1f;
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -118,7 +142,8 @@ namespace Monogame_Assignment_1
             }
             _spriteBatch.DrawString(titleFont, "The City is under Attack!", new Vector2(152, 452), Color.Black * titleFade);
             _spriteBatch.DrawString(titleFont, "The City is under Attack!", new Vector2(150, 450), Color.Yellow * titleFade);
-            
+            _spriteBatch.Draw(boomTexture, boomRect, Color.White * boomFade);
+            _spriteBatch.Draw(boomTexture, boomRect2, Color.White * boomFade2);
 
 
 
